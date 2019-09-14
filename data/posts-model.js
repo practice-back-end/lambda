@@ -5,7 +5,8 @@ module.exports = {
   getAllPosts,
   getOneRandomPost,
   findById,
-  //   removeById
+  removeById,
+  updatePost
 };
 
 function getAllPosts() {
@@ -13,10 +14,23 @@ function getAllPosts() {
 }
 
 function findById(id) {
-  console.log(id)
+  console.log(id);
   return db('posts')
     .where({ id })
     .first();
+}
+
+function removeById(id) {
+  return db('posts')
+    .where({ id })
+    .del();
+}
+
+async function updatePost(id, post) {
+  await db('posts')
+    .where({ id })
+    .update(post);
+  return findById(id);
 }
 
 async function addPost(post) {
