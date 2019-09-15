@@ -33,7 +33,7 @@ This is a very special database made just for Lambda students to practice CRUD o
 # Summary of Properties
 
 | Property    | Data Type | Nullable                          |
-| -------- | ------ | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| -------- | ------ | --------------------------------- |
 | id       | integer  | Automatically assigned  |
 | text     | string   | No               |
 | author   | string   | Yes              | 
