@@ -2,6 +2,10 @@
 
 This is a very special database made just for Lambda students to practice CRUD operations. Please respect the database and only post inspirational messages for your fellow classmates. 
 
+Quotes that have an ID 1-22 are protected and cannot be edited or deleted. I will be monitoring the database and removing any content that isn't inspirational. 
+
+Build an application where you register/login a user to get a list of quotes or get a random quote 1 at a time. 
+
 ### Base URL: `https://lambda-practice-db.herokuapp.com`
 
 API Documentation
