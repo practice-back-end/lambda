@@ -1,16 +1,25 @@
 # Practice API - Lambda Motivational Quotes
 
-This is a very special database made just for Lambda students to practice CRUD operations. Please respect the database and only post inspirational messages for your fellow classmates. Certain quotes from TLs and SLs will be protected from DELETE. Please only DELETE quotes you added! 
+This is a very special database made just for Lambda students to practice CRUD operations. Please respect the database and only post inspirational messages for your fellow classmates. 
 
 ### Base URL: `https://lambda-practice-db.herokuapp.com`
 
-### Endpoints
+API Documentation
 
-- GET all quotes `/api/getem` 
+- [POST] to `/api/auth/register`: returns a token to be added to the header of all other requests.Tokens expire after 7 days.
+- [POST] to `/api/auth/login`: returns a token to be added to the header of all other requests. Pass in the following credentials as the body of the request: { username: 'ExampleUserName', password: '1234' }
 
-- GET one random quote `/api/getone`
+Requires Token to be sent back in the header of the following requests:
 
-- POST a new quote `/api/post` - POST requires an object with the following shape:
+- [GET] to `/api/post`: returns the list of quotes.
+- [GET] to `/api/post/getone`: returns a random quote.
+- [POST] to `/api/post/:id`: creates a new quote object. Pass the quote as the body of the request (the second argument passed to axios.post).
+- [PUT] to `/api/post/:id`: updates the quote using the id passed as part of the URL. Send the quote object with the updated information as the body of the request (the second argument passed to axios.put).
+- [DELETE] to `/api/post/:id`: removes the quote and return a success/error message.
+
+
+
+### POST & PUT requires an object with the following shape:
 
 ```javascript 
 {
@@ -19,16 +28,6 @@ This is a very special database made just for Lambda students to practice CRUD o
 } 
 ```
 
-- PUT (edits) a quote by ID `/api/post/:id` - PUT requires an object with the following shape:
-
-```javascript 
-{
-    "text": "Another very inspiration quote goes here.",
-    "author": ""  // Author can be empty
-} 
-```
-
-- DELETE a quote by ID `/api/post/:id`
 
 # Summary of Properties
 
@@ -39,5 +38,4 @@ This is a very special database made just for Lambda students to practice CRUD o
 | author   | string   | Yes              | 
 | created_at| timestamp   | Automatically assigned   |
 
-- HINT: You can view the database using the endpoints above in your browser
 
