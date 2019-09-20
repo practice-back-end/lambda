@@ -9,7 +9,7 @@ const postsRouter = require("../api/posts-router")
 const server = express();
 
 server.use(helmet());
-server.use(cors());
+server.use(cors({ origin: '*' }))
 server.use(express.json());
 
 server.use("/api/auth", authRouter);

@@ -31,7 +31,7 @@ router.post('/', protected, async (req, res) => {
     }
 });
 
-router.delete('/:id', protected, async (req, res) => {
+router.delete('/:id', protected, verifyPostId, verifyEditable, async (req, res) => {
     try {
         const id = req.params.id;
         await db.removeById(id);
@@ -41,7 +41,7 @@ router.delete('/:id', protected, async (req, res) => {
     }
 });
 
-router.put('/:id', protected, async (req, res) => {
+router.put('/:id', protected, verifyPostId, verifyEditable, async (req, res) => {
     try {
         const post = req.body;
         const id = req.params.id;
@@ -52,5 +52,40 @@ router.put('/:id', protected, async (req, res) => {
     }
 });
 
+// ---------------------- Custom Middleware ---------------------- //
+
+function verifyEditable(req, res, next) {
+    const id = req.params.id;
+
+    db.findById(id)
+        .then(quote => {
+            if (quote.id > 22) {
+                next();
+            } else {
+                res.status(403).json({ message: "You are not authorized to edit/delete this post." })
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err)
+        })
+}
+
+function verifyPostId(req, res, next) {
+    const id = req.params.id;
+
+    db.findById(id)
+        .then(item => {
+            console.log("item", item)
+            if (item) {
+                req.item = item;
+                next();
+            } else {
+                res.status(404).json({ message: "Post Not Found." });
+            }
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        });
+}
 
 module.exports = router;
