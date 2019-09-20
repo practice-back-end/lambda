@@ -21,7 +21,7 @@ router.get('/getone', protected, async (req, res) => {
     }
 });
 
-router.post('/', protected, async (req, res) => {
+router.post('/', protected, validatePostContent, async (req, res) => {
     try {
         const post = req.body;
         const newPost = await db.addPost(post);
@@ -41,7 +41,7 @@ router.delete('/:id', protected, verifyPostId, verifyEditable, async (req, res) 
     }
 });
 
-router.put('/:id', protected, verifyPostId, verifyEditable, async (req, res) => {
+router.put('/:id', protected, verifyPostId, verifyEditable, validatePostContent, async (req, res) => {
     try {
         const post = req.body;
         const id = req.params.id;
@@ -86,6 +86,16 @@ function verifyPostId(req, res, next) {
         .catch(err => {
             res.status(500).json(err);
         });
+}
+
+function validatePostContent(req, res, next) {
+    if (!req.body.text) {
+        res
+            .status(400)
+            .json({ message: "Quote posts require a text entry." });
+    } else {
+        next();
+    }
 }
 
 module.exports = router;
