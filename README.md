@@ -13,7 +13,7 @@ Requires Token to be sent back in the header of the following requests:
 
 - [GET] to `/api/post`: returns the list of quotes.
 - [GET] to `/api/post/getone`: returns a random quote.
-- [POST] to `/api/post/:id`: creates a new quote object. Pass the quote as the body of the request (the second argument passed to axios.post).
+- [POST] to `/api/post`: creates a new quote object. Pass the quote as the body of the request (the second argument passed to axios.post).
 - [PUT] to `/api/post/:id`: updates the quote using the id passed as part of the URL. Send the quote object with the updated information as the body of the request (the second argument passed to axios.put).
 - [DELETE] to `/api/post/:id`: removes the quote and return a success/error message.
 
