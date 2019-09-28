@@ -27,7 +27,7 @@ Requires Token to be sent back in the header of the following requests:
 
 ```javascript 
 {
-    "text": "A very inspiration quote goes here.",
+    "text": "A very inspirational quote goes here.",
     "author": "Herman the Cat"
 } 
 ```
