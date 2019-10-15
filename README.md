@@ -13,6 +13,15 @@ API Documentation
 - [POST] to `/api/auth/register`: returns a token to be added to the header of all other requests.Tokens expire after 7 days.
 - [POST] to `/api/auth/login`: returns a token to be added to the header of all other requests. Pass in the following credentials as the body of the request: { username: 'ExampleUserName', password: '1234' }
 
+### Both register and login requires an object with the following shape as the request body:
+
+```javascript 
+{
+    "username": "supercoolcoder",
+    "password": "123456"
+} 
+```
+
 Requires Token to be sent back in the header of the following requests:
 
 - [GET] to `/api/post`: returns the list of quotes.
@@ -23,7 +32,7 @@ Requires Token to be sent back in the header of the following requests:
 
 
 
-### POST & PUT requires an object with the following shape:
+### POST & PUT requires an object with the following shape as the request body:
 
 ```javascript 
 {
