@@ -22,7 +22,7 @@ API Documentation
 } 
 ```
 
-Requires Token to be sent back in the header of the following requests:
+Requires Token to be sent back in the header of the following requests (Hint: use axiosWithAuth):
 
 - [GET] to `/api/post`: returns the list of quotes.
 - [GET] to `/api/post/getone`: returns a random quote.
